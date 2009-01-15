@@ -1,6 +1,6 @@
 PLUGIN = wavelet-sharpen
 LOCALEDIR = /usr/share/locale
-LANGUAGES = de ru it
+LANGUAGES = de ru it pl
 
 # END CONFIG ##################################################################
 
