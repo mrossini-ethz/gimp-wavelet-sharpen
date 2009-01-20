@@ -1,0 +1,78 @@
+# translation of nl.po to Dutch
+# Dutch translations for wavelet-sharpen package.
+# Copyright (C) 2009 THE wavelet-sharpen'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the wavelet-sharpen package.
+#
+# root <zuma@xs4all.nl>, 2009.
+# R.E. van der Luit <nippur@fedoraproject.org>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: nl\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-01-20 13:50+0100\n"
+"PO-Revision-Date: 2009-01-20 14:41+0100\n"
+"Last-Translator: R.E. van der Luit <nippur@fedoraproject.org>\n"
+"Language-Team: Dutch <nippur@fedoraproject.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
+"X-Generator: KBabel 1.11.4\n"
+
+#: ../src/plugin.h:36
+msgid "Adjusts the amount of sharpening applied."
+msgstr "Pas de hoeveelheid toegepaste verscherping aan."
+
+#: ../src/plugin.h:37
+msgid ""
+"Adjusts the radius of the sharpening. For very unsharp images it is "
+"recommended to use higher values. Default is 0.5."
+msgstr "Pas de straal van de verscherping aan. Voor erg onscherpe afbeeldingen wordt het aangeraden hogere waarden te gebruiken. Standaard is 0.5."
+
+#: ../src/plugin.h:38
+msgid ""
+"Sharpens luminance only (YCbCr luminance channel). This avoids color "
+"artifacts to appear and makes the sharpening faster. Colour sharpness in "
+"natural images is not critical for the human eye."
+msgstr "Verscherpt alleen luminantie (YCbCr luminantie kanaal). Dit voorkomt het optreden van kleur artefacts en maakt het verscherpingsproces sneller. Kleurverscherping in natuurlijke afbeeldingen speelt geen belangrijke rol voor het menselijk oog."
+
+#: ../src/plugin.h:39
+msgid "Resets to the default values."
+msgstr "Reset naar de standaardwaarden"
+
+#: ../src/interface.c:20 ../src/interface.c:125
+msgid "Wavelet sharpen"
+msgstr "Wavelet verscherpen"
+
+#: ../src/interface.c:33
+msgid "Amount"
+msgstr "Hoeveelheid"
+
+#: ../src/interface.c:61
+msgid "Radius"
+msgstr "Straal"
+
+#: ../src/interface.c:91
+msgid "Sharpen luminance only"
+msgstr "Verscherp alleen luminantie"
+
+#: ../src/plugin.c:29 ../src/plugin.c:30
+msgid "Sharpens the image using wavelets."
+msgstr "Verscherpt de afbeelding met behulp van wavelets"
+
+#: ../src/plugin.c:32
+msgid "Marco Rossini"
+msgstr "Marco Rossini"
+
+#: ../src/plugin.c:33
+msgid "Copyright 2008 Marco Rossini"
+msgstr "Copyright 2008 Marco Rossini"
+
+#: ../src/plugin.c:35
+msgid "_Wavelet sharpen ..."
+msgstr "_Wavelet verscherpen..."
+
+#: ../src/sharpen.c:64
+msgid "Wavelet sharpening..."
+msgstr "Wavelet verscherpen.."
+
