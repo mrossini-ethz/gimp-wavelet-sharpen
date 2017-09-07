@@ -1,5 +1,5 @@
 CFLAGS = -O3 -Wall $(shell gimptool-2.0 --cflags)
-LIBS = $(shell gimptool-2.0 --libs)
+LIBS = $(shell gimptool-2.0 --libs) -lm
 PLUGIN = wavelet-sharpen
 SOURCES = plugin.c colour.c sharpen.c wavelet.c events.c interface.c
 HEADERS = plugin.h interface.h
