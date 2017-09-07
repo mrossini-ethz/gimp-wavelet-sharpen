@@ -3,7 +3,9 @@ ChangeLog
 
 unreleased
 -------------------------------------------------------------------------------
-- Added Dutch translation (thanks to Richard van der Luit)
+- Added translations:
+  - Dutch (thanks to Richard van der Luit)
+  - Greek (thanks to Chris Sakalis)
 - Fixed russian translation
 
 wavelet-sharpen v0.1.2
