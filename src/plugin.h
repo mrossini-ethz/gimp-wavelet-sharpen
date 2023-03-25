@@ -67,10 +67,10 @@ typedef struct
 
 extern wavelet_settings settings;
 
-float *fimg[4];
-float *buffer[3];
-gint channels;
+extern float *fimg[4];
+extern float *buffer[3];
+extern gint channels;
 
-GTimer *timer;
+extern GTimer *timer;
 
 #endif /* __PLUGIN_H__ */

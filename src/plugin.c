@@ -11,6 +11,11 @@
 
 #include "plugin.h"
 
+float *fimg[4];
+float *buffer[3];
+gint channels;
+GTimer *timer;
+
 GimpPlugInInfo PLUG_IN_INFO = { NULL, NULL, query, run };
 
 MAIN ()
