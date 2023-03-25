@@ -17,16 +17,23 @@
 /* declare all widgets global to make things a lot easier */
 
 /* colour mode frame */
-GtkWidget *lum_toggle;
+extern GtkWidget *lum_toggle;
 
 /* amount/radius frame */
-GtkWidget *amount_label[2], *amount_spin[2];
-GtkWidget *amount_hbox[2], *amount_vbox, *amount_scale[2];
-GtkObject *amount_adj[2];
+extern GtkWidget *amount_label[2];
+extern GtkWidget *amount_spin[2];
+extern GtkWidget *amount_hbox[2];
+extern GtkWidget *amount_scale[2];
+extern GtkObject *amount_adj[2];
+extern GtkWidget *amount_vbox;
 
 /* reset buttons */
-GtkWidget *reset_button, *button_hbox;
+extern GtkWidget *reset_button;
+extern GtkWidget *button_hbox;
 
 /* dialog */
-GtkWidget *dialog, *dialog_vbox;
-GtkWidget *preview;
+extern GtkWidget *dialog; 
+extern GtkWidget *dialog_vbox;
+extern GtkWidget *preview;
+
+
