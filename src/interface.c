@@ -12,6 +12,20 @@
 #include "plugin.h"
 #include "interface.h"
 
+GtkWidget *lum_toggle;
+
+/* amount/radius frame */
+GtkWidget *amount_label[2], *amount_spin[2];
+GtkWidget *amount_hbox[2], *amount_vbox, *amount_scale[2];
+GtkObject *amount_adj[2];
+
+/* reset buttons */
+GtkWidget *reset_button, *button_hbox;
+
+/* dialog */
+GtkWidget *dialog, *dialog_vbox;
+GtkWidget *preview;
+
 gboolean
 user_interface (GimpDrawable * drawable)
 {
