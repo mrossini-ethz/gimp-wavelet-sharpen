@@ -1,21 +1,34 @@
 INSTALL
 =======
 
-For Linux and Unix users
-------------------------
-To install this GIMP plugin simply state
+The plugin requires GIMP 3.0 or newer. For GIMP 2.x use version 0.1.2.
 
-	make
-	make install
+Building needs meson, ninja, a C compiler, gettext and the GIMP development
+files (the package is called libgimp-3.0-dev on Debian and Ubuntu,
+gimp-devel on Fedora).
 
-for a system wide installation or
+System wide installation:
 
-	make
-	make userinstall
+	meson setup build
+	ninja -C build
+	sudo ninja -C build install
 
-for user installation. A restart of The GIMP is recommended.
+User installation, into the plug-ins folder of your GIMP profile (see
+Edit->Preferences->Folders->Plug-ins in GIMP for the exact path):
 
-Other platforms
----------------
-I'm sorry I have no knowledge on how to install plugins on other platforms. I
-hope others will find a way.
+	meson setup build -Dplugindir=$HOME/.config/GIMP/3.2/plug-ins
+	ninja -C build install
+
+Restart GIMP after installing.
+
+Flatpak GIMP
+------------
+The Flatpak version of GIMP reads user plug-ins from ~/.config/GIMP/3.2 as
+well. The plugin has to be built against the GIMP of the Flatpak, using the
+GNOME SDK that GIMP was built with (see "flatpak info org.gimp.GIMP"):
+
+	flatpak install --user flathub org.gnome.Sdk//50
+	flatpak run --devel --filesystem=$PWD --filesystem=~/.config/GIMP \
+	  --env=PKG_CONFIG_PATH=/app/lib/pkgconfig --command=sh org.gimp.GIMP -c \
+	  'meson setup build -Dplugindir=$HOME/.config/GIMP/3.2/plug-ins &&
+	   ninja -C build install'

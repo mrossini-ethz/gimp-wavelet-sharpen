@@ -7,9 +7,6 @@
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2+
  * as published by the Free Software Foundation.
- * 
- * Instructions:
- * compile with gimptool, eg. 'gimptool-2.0 --install wavelet-sharpen.c'
  */
 
 #include "plugin.h"

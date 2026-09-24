@@ -1,0 +1,80 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the wavelet-sharpen package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: wavelet-sharpen\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-09-24 20:28+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/interface.c:35
+msgid "Wavelet sharpen"
+msgstr ""
+
+#: src/plugin.c:81
+msgid "_Wavelet sharpen ..."
+msgstr ""
+
+#: src/plugin.c:85 src/plugin.c:86
+msgid "Sharpens the image using wavelets."
+msgstr ""
+
+#. the arguments keep the names of the GIMP 2 version for scripts
+#: src/plugin.c:92
+msgid "_Amount"
+msgstr ""
+
+#: src/plugin.c:95
+msgid "Ra_dius"
+msgstr ""
+
+#: src/plugin.c:99
+msgid "Sharpen lu_minance only"
+msgstr ""
+
+#: src/plugin.c:130
+#, c-format
+msgid "Procedure '%s' only works with one drawable."
+msgstr ""
+
+#. Tool-tips
+#: src/plugin.h:30
+msgid "Adjusts the amount of sharpening applied."
+msgstr ""
+
+#: src/plugin.h:31
+msgid ""
+"Adjusts the radius of the sharpening. For very unsharp images it is "
+"recommended to use higher values. Default is 0.5."
+msgstr ""
+
+#: src/plugin.h:32
+msgid ""
+"Sharpens luminance only (YCbCr luminance channel). This avoids color "
+"artifacts to appear and makes the sharpening faster. Colour sharpness in "
+"natural images is not critical for the human eye."
+msgstr ""
+
+#: src/sharpen.c:99
+#, c-format
+msgid "Image dimensions too large: width %d x height %d"
+msgstr ""
+
+#: src/sharpen.c:115
+#, c-format
+msgid "There was not enough memory to complete the operation."
+msgstr ""
+
+#: src/sharpen.c:127
+msgid "Wavelet sharpening..."
+msgstr ""

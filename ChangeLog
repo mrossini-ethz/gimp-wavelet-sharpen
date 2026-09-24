@@ -1,8 +1,17 @@
 ChangeLog
 =========
 
-unreleased
+wavelet-sharpen v0.2
 -------------------------------------------------------------------------------
+- Ported to GIMP 3. GIMP 2.x is no longer supported, use v0.1.2 for it.
+- Images of any precision are processed in floating point without loss, in
+  the colour space of the image. Floating point images are not clipped.
+- The script arguments keep their GIMP 2 names: amount, radius, luminance.
+- GIMP's standard Reset, Load and Save Settings replace the reset button.
+- The preview shows the alpha channel instead of full opacity.
+- Fixed: building failed with GCC 10 and newer (multiple definitions).
+- Fixed: reading outside of the image for selections smaller than 32 pixels.
+- Build system is now meson; translations are installed with the plugin.
 - Added translations:
   - Dutch (thanks to Richard van der Luit)
   - Greek (thanks to Chris Sakalis)

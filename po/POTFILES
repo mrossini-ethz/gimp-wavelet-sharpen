@@ -1,0 +1,4 @@
+src/interface.c
+src/plugin.c
+src/plugin.h
+src/sharpen.c
