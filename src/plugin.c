@@ -134,6 +134,22 @@ wavelet_sharpen_run (GimpProcedure * procedure, GimpRunMode run_mode,
     }
   drawable = drawables[0];
 
+  /* GIMP does not check the image types for calls from scripts, and the
+     menu entry is also active for layer groups */
+  if (gimp_drawable_is_indexed (drawable))
+    g_set_error (&error, GIMP_PLUG_IN_ERROR, 0,
+		 _("Procedure '%s' does not work with indexed images."),
+		 PLUG_IN_PROC);
+  else if (gimp_item_is_group (GIMP_ITEM (drawable)))
+    g_set_error (&error, GIMP_PLUG_IN_ERROR, 0,
+		 _("Cannot modify the pixels of layer groups."));
+  else if (gimp_item_get_lock_content (GIMP_ITEM (drawable)))
+    g_set_error (&error, GIMP_PLUG_IN_ERROR, 0,
+		 _("The pixels of the layer are locked."));
+  if (error)
+    return gimp_procedure_new_return_values (procedure,
+					     GIMP_PDB_CALLING_ERROR, error);
+
   /* run GUI if in interactive mode */
   if (run_mode == GIMP_RUN_INTERACTIVE
       && !user_interface (procedure, config, drawable))
