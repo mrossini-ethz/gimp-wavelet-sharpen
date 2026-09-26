@@ -91,8 +91,16 @@ sharpen (GimpDrawable * drawable, GimpPreview * preview,
   luminance = colour_channels == 3 && settings->luminance_only;
   clip_colour = !drawable_is_float (drawable);
 
-  /* allocate one plane per channel plus two for the wavelet transform */
-  if (!g_size_checked_mul (&size, width, height)
+  channels_to_sharpen = settings->sharpen_amount > 0
+    ? (luminance ? 1 : colour_channels) : 0;
+
+  /* nothing to do: leave the drawable exactly as it is */
+  if (!preview && channels_to_sharpen == 0)
+    return TRUE;
+
+  /* allocate one plane per channel plus two for the wavelet transform;
+     the wavelet code counts pixels in unsigned int */
+  if (!g_size_checked_mul (&size, width, height) || size > G_MAXUINT
       || !g_size_checked_mul (&bufsize, size, sizeof (float)))
     {
       g_set_error (error, GIMP_PLUG_IN_ERROR, 0,
@@ -117,8 +125,6 @@ sharpen (GimpDrawable * drawable, GimpPreview * preview,
       return FALSE;
     }
 
-  channels_to_sharpen = settings->sharpen_amount > 0
-    ? (luminance ? 1 : colour_channels) : 0;
   progress_step = (1.0 - PROGRESS_READ - PROGRESS_WRITE)
     / MAX2 (channels_to_sharpen, 1);
 
