@@ -4,10 +4,11 @@
 # (GIMP3_DIRECTORY) whose plug-in path adds the freshly built plug-in, so
 # the installed plug-ins and the user's settings are not touched.
 #
-# With gimp-plugin-devtools next to this repo, the Flatpak GIMP is used if
-# it is installed (the build runs in its SDK). Otherwise meson, ninja and
-# gimp-console come from the system; set GIMP_CONSOLE to use another
-# gimp-console, e.g. GIMP_CONSOLE=gimp-console-3.2.
+# With gimp-plugin-devtools next to this repo, its gimp-env.sh finds GIMP:
+# the Flatpak if it is installed (the build runs in its SDK), otherwise the
+# GIMP on the PATH; GIMP_FLATPAK=0 or 1 chooses. Without it, meson, ninja
+# and gimp-console come from the system. GIMP_CONSOLE sets the gimp-console
+# of a native GIMP, e.g. GIMP_CONSOLE=gimp-console-3.2.
 #
 # Extra meson options can be given, e.g. for a sanitizer build:
 #   tests/run.sh -Db_sanitize=address,undefined
@@ -21,8 +22,9 @@ out="$here/output"
 devtools="$top/../gimp-plugin-devtools"
 if [ -f "$devtools/gimp-env.sh" ]; then
   . "$devtools/gimp-env.sh"
+  [ -z "$GIMP_ENV_ERROR" ] || { echo "$0: $GIMP_ENV_ERROR" >&2; exit 1; }
 else
-  GIMP_FLATPAK=0
+  GIMP_FLATPAK=0 GIMP_SERIES=
 fi
 
 # runs a build command in the source folder
@@ -56,9 +58,16 @@ esac
 if [ "$GIMP_FLATPAK" = 1 ]; then
   set -- flatpak run $devel --filesystem="$top" \
     $(for e in $env; do echo "--env=$e"; done) \
-    --command=gimp-console-$GIMP_SERIES org.gimp.GIMP
+    --command=gimp-console-$GIMP_SERIES "$GIMP_APP_ID"
 else
-  set -- env $env "${GIMP_CONSOLE:-gimp-console}"
+  # gimp-console-3.2, or gimp-console if there is no such command
+  if [ -z "$GIMP_CONSOLE" ]; then
+    GIMP_CONSOLE=gimp-console
+    if [ -n "$GIMP_SERIES" ] && command -v "gimp-console-$GIMP_SERIES" > /dev/null; then
+      GIMP_CONSOLE=gimp-console-$GIMP_SERIES
+    fi
+  fi
+  set -- env $env "$GIMP_CONSOLE"
 fi
 set +e
 "$@" --no-interface --no-data \
