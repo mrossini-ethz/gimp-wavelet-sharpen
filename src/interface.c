@@ -40,8 +40,9 @@ user_interface (GimpProcedure * procedure, GimpProcedureConfig * config,
   g_object_set_data (G_OBJECT (config), "drawable", drawable);
   g_signal_connect (preview, "invalidated", G_CALLBACK (preview_update),
 		    config);
-  g_signal_connect_swapped (config, "notify",
-			    G_CALLBACK (gimp_preview_invalidate), preview);
+  g_signal_connect_object (config, "notify",
+			   G_CALLBACK (gimp_preview_invalidate), preview,
+			   G_CONNECT_SWAPPED);
 
   /* prepare the amount and radius sliders */
   widget = gimp_procedure_dialog_get_spin_scale (dialog, "amount", 1.0);
