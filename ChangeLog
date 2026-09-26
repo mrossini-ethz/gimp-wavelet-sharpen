@@ -11,6 +11,12 @@ wavelet-sharpen v0.2
 - The preview shows the alpha channel instead of full opacity.
 - Fixed: building failed with GCC 10 and newer (multiple definitions).
 - Fixed: reading outside of the image for selections smaller than 32 pixels.
+- Fixed: the YCbCr conversion of "Sharpen luminance only" was not exactly
+  reversible, which changed 16-bit and floating point images slightly.
+- Indexed images, layer groups and layers with locked pixels are refused
+  with an error message instead of being processed.
+- Nothing is changed when the amount is 0.
+- Added tests (tests/run.sh).
 - Build system is now meson; translations are installed with the plugin.
 - Added translations:
   - Dutch (thanks to Richard van der Luit)
