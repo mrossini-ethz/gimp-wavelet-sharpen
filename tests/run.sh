@@ -2,7 +2,14 @@
 # Builds the plug-in into tests/output and runs tests/cases.py inside GIMP
 # without a window. GIMP uses a throwaway profile in tests/output/profile
 # (GIMP3_DIRECTORY) whose plug-in path adds the freshly built plug-in, so
-# the installed plug-ins and the user's settings are not touched.
+# the installed plug-ins and the user's settings are not touched. GIMP
+# and the build run isolated from the user's folders (tests/isolate.sh,
+# with gimp-plugin-devtools/gimp-run.sh if it is there): HOME and the XDG
+# folders, also inside the Flatpak, point into tests/output/gimp-home, so
+# nothing lands in ~/.var/app/org.gimp.GIMP either. With
+# gimp-plugin-devtools, a listing of the user's folders of GIMP and the
+# other apps (its snapshot.sh) before and after checks that nothing there
+# changed.
 #
 # With gimp-plugin-devtools next to this repo, its gimp-env.sh finds GIMP:
 # the Flatpak if it is installed (the build runs in its SDK), otherwise the
@@ -37,6 +44,12 @@ build () {
 }
 
 rm -rf "$out"; mkdir -p "$out/profile"
+src=$top
+GIMP_RUN_HOME=$out/gimp-home
+export GIMP_RUN_HOME
+# shellcheck source=SCRIPTDIR/isolate.sh
+. "$here/isolate.sh"
+snapshot_take "$out/snapshot-before.txt"
 build meson setup "$out/build" -Dplugindir="$out/plug-ins" "$@" > "$out/build.log" 2>&1 \
   || { cat "$out/build.log"; exit 1; }
 build ninja -C "$out/build" install >> "$out/build.log" 2>&1 \
@@ -56,9 +69,8 @@ case "$*" in
     env="$env UBSAN_OPTIONS=log_path=$out/sanitizer:print_stacktrace=1" ;;
 esac
 if [ "$GIMP_FLATPAK" = 1 ]; then
-  set -- flatpak run $devel --filesystem="$top" \
-    $(for e in $env; do echo "--env=$e"; done) \
-    --command=gimp-console-$GIMP_SERIES "$GIMP_APP_ID"
+  set -- gimp_run --flatpak $devel --app="$GIMP_APP_ID" --filesystem="$top" \
+    $(for e in $env; do echo "--env=$e"; done) -- gimp-console-"$GIMP_SERIES"
 else
   # gimp-console-3.2, or gimp-console if there is no such command
   if [ -z "$GIMP_CONSOLE" ]; then
@@ -67,7 +79,7 @@ else
       GIMP_CONSOLE=gimp-console-$GIMP_SERIES
     fi
   fi
-  set -- env $env "$GIMP_CONSOLE"
+  set -- gimp_run --native $(for e in $env; do echo "--env=$e"; done) -- "$GIMP_CONSOLE"
 fi
 set +e
 "$@" --no-interface --no-data \
@@ -80,4 +92,5 @@ grep -q '^RESULT [0-9]* passed, 0 failed' "$out/gimp.log" || result=1
 if [ -n "$sanitize" ]; then
   python3 "$here/sanitizer.py" "$out" || result=1
 fi
+snapshot_check "$out/snapshot-before.txt" "" || result=1
 exit $result
