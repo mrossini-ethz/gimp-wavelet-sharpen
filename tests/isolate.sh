@@ -1,35 +1,35 @@
 # Sourced by the test scripts of a plug-in: runs GIMP (or Blender, Godot)
 # isolated from the user's own folders, and checks that none of them
-# changed. A copy of gimp-plugin-devtools/isolate.sh, kept the same in
+# changed. A copy of gimp-devtools/isolate.sh, kept the same in
 # every repository that has one (as tests/isolate.sh), so that the tests
-# also run without gimp-plugin-devtools.
+# also run without gimp-devtools.
 #
-# Needs $src, the repository. Uses gimp-plugin-devtools next to it (or
+# Needs $src, the repository. Uses gimp-devtools next to it (or
 # $GIMP_PLUGIN_DEVTOOLS, or $devtools if set before), and sets $devtools.
 #
 #   gimp_run [--timeout=SECONDS] [gimp-run.sh options] -- <command...>
-#       the command as gimp-plugin-devtools/gimp-run.sh runs it (see
+#       the command as gimp-devtools/gimp-run.sh runs it (see
 #       there): in the Flatpak (natively with GIMP_FLATPAK=0), with HOME
 #       and the XDG folders in the throwaway $GIMP_RUN_HOME (or --home=)
 #       and no GVFS. --timeout ends it after that many seconds (exit
-#       code 124). Without gimp-plugin-devtools the same is done here,
+#       code 124). Without gimp-devtools the same is done here,
 #       for the options --home=, --env=, --filesystem=, --devel, --app=,
 #       --native and --flatpak (in that form, and a -- before the command;
 #       --env cannot set XDG_* there)
 #   snapshot_take <file>
 #       lists the user's folders of GIMP, Blender, Godot, Krita and Tiled
-#       (gimp-plugin-devtools/snapshot.sh) into the file
+#       (gimp-devtools/snapshot.sh) into the file
 #   snapshot_check <file> <prefix>
 #       compares them with the listing and prints "<prefix>PASS ..." or
 #       "<prefix>FAIL ..." (returns 1), or "<prefix>SKIP ..." without
-#       gimp-plugin-devtools
+#       gimp-devtools
 #
 # Copyright 2026 David
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 # ($src is set by the script that sources this one)
 # shellcheck disable=SC2154
-devtools=${devtools:-${GIMP_PLUGIN_DEVTOOLS:-$src/../gimp-plugin-devtools}}
+devtools=${devtools:-${GIMP_PLUGIN_DEVTOOLS:-$src/../gimp-devtools}}
 
 gimp_run () {
     gr_timeout=
@@ -40,7 +40,7 @@ gimp_run () {
           "$devtools/gimp-run.sh" ${GIMP_RUN_HOME:+--home="$GIMP_RUN_HOME"} "$@"
         return
     fi
-    # without gimp-plugin-devtools: the same, in short
+    # without gimp-devtools: the same, in short
     gr_home=${GIMP_RUN_HOME:-} gr_app=org.gimp.GIMP gr_mode=
     for gr_a; do
         case $gr_a in

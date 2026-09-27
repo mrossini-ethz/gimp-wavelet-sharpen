@@ -4,14 +4,14 @@
 # (GIMP3_DIRECTORY) whose plug-in path adds the freshly built plug-in, so
 # the installed plug-ins and the user's settings are not touched. GIMP
 # and the build run isolated from the user's folders (tests/isolate.sh,
-# with gimp-plugin-devtools/gimp-run.sh if it is there): HOME and the XDG
+# with gimp-devtools/gimp-run.sh if it is there): HOME and the XDG
 # folders, also inside the Flatpak, point into tests/output/gimp-home, so
 # nothing lands in ~/.var/app/org.gimp.GIMP either. With
-# gimp-plugin-devtools, a listing of the user's folders of GIMP and the
+# gimp-devtools, a listing of the user's folders of GIMP and the
 # other apps (its snapshot.sh) before and after checks that nothing there
 # changed.
 #
-# With gimp-plugin-devtools next to this repo, its gimp-env.sh finds GIMP:
+# With gimp-devtools next to this repo, its gimp-env.sh finds GIMP:
 # the Flatpak if it is installed (the build runs in its SDK), otherwise the
 # GIMP on the PATH; GIMP_FLATPAK=0 or 1 chooses. Without it, meson, ninja
 # and gimp-console come from the system. GIMP_CONSOLE sets the gimp-console
@@ -26,7 +26,7 @@ set -e
 here=$(cd "$(dirname "$0")" && pwd)
 top=$(dirname "$here")
 out="$here/output"
-devtools="$top/../gimp-plugin-devtools"
+devtools="$top/../gimp-devtools"
 if [ -f "$devtools/gimp-env.sh" ]; then
   . "$devtools/gimp-env.sh"
   [ -z "$GIMP_ENV_ERROR" ] || { echo "$0: $GIMP_ENV_ERROR" >&2; exit 1; }
