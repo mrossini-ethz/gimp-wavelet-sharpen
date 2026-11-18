@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wavelet-sharpen 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-20 17:09+0100\n"
+"POT-Creation-Date: 2026-09-24 20:28+0200\n"
 "PO-Revision-Date: 2008-11-15 18:35+0100\n"
 "Last-Translator:  <marco.rossini@gmx.net>\n"
 "Language-Team: German\n"
@@ -17,11 +17,42 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../src/plugin.h:36
+#: src/interface.c:35
+msgid "Wavelet sharpen"
+msgstr "Wavelet schärfen"
+
+#: src/plugin.c:81
+msgid "_Wavelet sharpen ..."
+msgstr "_Wavelet schärfen ..."
+
+#: src/plugin.c:85 src/plugin.c:86
+msgid "Sharpens the image using wavelets."
+msgstr "Schärft das Bild mit Hilfe von Wavelets."
+
+#. the arguments keep the names of the GIMP 2 version for scripts
+#: src/plugin.c:92
+msgid "_Amount"
+msgstr "_Stärke"
+
+#: src/plugin.c:95
+msgid "Ra_dius"
+msgstr "_Radius"
+
+#: src/plugin.c:99
+msgid "Sharpen lu_minance only"
+msgstr "_Nur Lumineszenz schärfen"
+
+#: src/plugin.c:130
+#, c-format
+msgid "Procedure '%s' only works with one drawable."
+msgstr ""
+
+#. Tool-tips
+#: src/plugin.h:30
 msgid "Adjusts the amount of sharpening applied."
 msgstr "Legt die Stärke der Schärfung fest."
 
-#: ../src/plugin.h:37
+#: src/plugin.h:31
 msgid ""
 "Adjusts the radius of the sharpening. For very unsharp images it is "
 "recommended to use higher values. Default is 0.5."
@@ -29,7 +60,7 @@ msgstr ""
 "Legt den Radius für das Schärfen fest. Für sehr unscharfe Bilder ist es "
 "empfohlen, höhere Werte zu verwenden. Standard ist 0.5."
 
-#: ../src/plugin.h:38
+#: src/plugin.h:32
 msgid ""
 "Sharpens luminance only (YCbCr luminance channel). This avoids color "
 "artifacts to appear and makes the sharpening faster. Colour sharpness in "
@@ -39,42 +70,25 @@ msgstr ""
 "Farbartefakte und macht das Schärfen schneller. Farbschärfe ist in "
 "natürlichen Bildern nicht kritisch für das menschliche Auge."
 
-#: ../src/plugin.h:39
-msgid "Resets to the default values."
-msgstr "Setzt zu den Standardwerten zurück."
+#: src/sharpen.c:99
+#, c-format
+msgid "Image dimensions too large: width %d x height %d"
+msgstr ""
 
-#: ../src/interface.c:20 ../src/interface.c:125
-msgid "Wavelet sharpen"
-msgstr "Wavelet schärfen"
+#: src/sharpen.c:115
+#, c-format
+msgid "There was not enough memory to complete the operation."
+msgstr ""
 
-#: ../src/interface.c:33
-msgid "Amount"
-msgstr "Stärke"
-
-#: ../src/interface.c:61
-msgid "Radius"
-msgstr "Radius"
-
-#: ../src/interface.c:91
-msgid "Sharpen luminance only"
-msgstr "Nur Lumineszenz schärfen"
-
-#: ../src/plugin.c:29 ../src/plugin.c:30
-msgid "Sharpens the image using wavelets."
-msgstr "Schärft das Bild mit Hilfe von Wavelets."
-
-#: ../src/plugin.c:32
-msgid "Marco Rossini"
-msgstr "Marco Rossini"
-
-#: ../src/plugin.c:33
-msgid "Copyright 2008 Marco Rossini"
-msgstr "Copyright 2008 Marco Rossini"
-
-#: ../src/plugin.c:35
-msgid "_Wavelet sharpen ..."
-msgstr "_Wavelet schärfen ..."
-
-#: ../src/sharpen.c:64
+#: src/sharpen.c:127
 msgid "Wavelet sharpening..."
 msgstr "Wavelet schärfen..."
+
+#~ msgid "Resets to the default values."
+#~ msgstr "Setzt zu den Standardwerten zurück."
+
+#~ msgid "Marco Rossini"
+#~ msgstr "Marco Rossini"
+
+#~ msgid "Copyright 2008 Marco Rossini"
+#~ msgstr "Copyright 2008 Marco Rossini"

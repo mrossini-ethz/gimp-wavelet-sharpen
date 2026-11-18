@@ -11,11 +11,33 @@
 
 #include "plugin.h"
 
+/* index i mirrored at the borders 0 and size - 1, as often as needed */
+static int
+mirror (int i, int size)
+{
+  int period = 2 * (size - 1);
+
+  if (period == 0)
+    return 0;
+  i = abs (i) % period;
+  return i < size ? i : period - i;
+}
+
 /* code copied from UFRaw (which originates from dcraw) */
-void
+static void
 hat_transform (float *temp, float *base, int st, int size, int sc)
 {
   int i;
+
+  /* sizes too small for a single mirroring at the borders */
+  if (size < 2 * sc)
+    {
+      for (i = 0; i < size; i++)
+	temp[i] = 2 * base[st * i] + base[st * mirror (i - sc, size)]
+	  + base[st * mirror (i + sc, size)];
+      return;
+    }
+
   for (i = 0; i < sc; i++)
     temp[i] = 2 * base[st * i] + base[st * (sc - i)] + base[st * (i + sc)];
   for (; i + sc < size; i++)
@@ -36,8 +58,7 @@ wavelet_sharpen (float *fimg[3], unsigned int width,
 
   size = width * height;
 
-  /* FIXME: replace by GIMP functions */
-  temp = (float *) malloc (MAX2 (width, height) * sizeof (float));
+  temp = g_new (float, MAX2 (width, height));
 
   hpass = 0;
   for (lev = 0; lev < 5; lev++)
@@ -81,6 +102,5 @@ wavelet_sharpen (float *fimg[3], unsigned int width,
   for (i = 0; i < size; i++)
     fimg[0][i] = fimg[0][i] + fimg[lpass][i];
 
-  /* FIXME: replace by GIMP functions */
-  free (temp);
+  g_free (temp);
 }

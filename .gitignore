@@ -1,4 +1,1 @@
-po/*.mo
-po/wavelet-sharpen.pot
-src/*.o
-src/wavelet-sharpen
+build/

@@ -12,6 +12,10 @@ LICENCE
 Copyright (C) 2008 by Marco Rossini. Distributed under the General Public
 License GPLv2+. See the file COPYING which contains the license.
 
+The plugin works in GIMP 3.0 and newer, on RGB and grayscale images of any
+precision (8 and 16 bit integer as well as floating point). The alpha channel
+is never sharpened.
+
 INSTALLATION
 ------------
 
@@ -45,3 +49,10 @@ There are two circumstances that makes it necessary to use the sharpen filter:
 
    d) You may want to have the checkbox 'Sharpen luminance only' activated in
       order to avoid having colour artifacts (especially in noisy images).
+
+SCRIPTING
+---------
+
+The plugin can be called from scripts as "plug-in-wavelet-sharpen" with the
+arguments "amount" (0 to 10), "radius" (0 to 2) and "luminance" (sharpen the
+luminance only), the same as in the GIMP 2 version.

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Wavelet Sharpen GIMP plug-in\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-12-13 11:26+0100\n"
+"POT-Creation-Date: 2026-09-24 20:28+0200\n"
 "PO-Revision-Date: 2008-12-21 11:41+0100\n"
 "Last-Translator: Michał Prędotka <mpredotka@gmail.com>\n"
 "Language-Team: \n"
@@ -11,57 +11,77 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/plugin.h:36
-msgid "Adjusts the amount of sharpening applied."
-msgstr "Ustawia siłę wyostrzania."
-
-#: ../src/plugin.h:37
-msgid "Adjusts the radius of the sharpening. For very unsharp images it is recommended to use higher values. Default is 0.5."
-msgstr "Ustawia promień wyostrzania. Zaleca się ustawienie większych wartości dla bardzo nieostrych obrazów. Domyślna wartość to 0,5."
-
-#: ../src/plugin.h:38
-msgid "Sharpens luminance only (YCbCr luminance channel). This avoids color artifacts to appear and makes the sharpening faster. Colour sharpness in natural images is not critical for the human eye."
-msgstr "Wyostrza tylko kanał luminancji dla YCbCr. Pozwala to na uniknięcie kolorowych artefaktów i przyspiesza wyostrzanie."
-
-#: ../src/plugin.h:39
-msgid "Resets to the default values."
-msgstr "Przywraca wartości domyślne."
-
-#: ../src/interface.c:20
-#: ../src/interface.c:125
+#: src/interface.c:35
 msgid "Wavelet sharpen"
 msgstr "Wyostrzanie wavelet"
 
-#: ../src/interface.c:33
-msgid "Amount"
-msgstr "Siła"
-
-#: ../src/interface.c:61
-msgid "Radius"
-msgstr "Promień"
-
-#: ../src/interface.c:91
-msgid "Sharpen luminance only"
-msgstr "Wyostrz tylko luminancję"
-
-#: ../src/plugin.c:29
-#: ../src/plugin.c:30
-msgid "Sharpens the image using wavelets."
-msgstr "Wyostrza obraz używając metody wavelet."
-
-#: ../src/plugin.c:32
-msgid "Marco Rossini"
-msgstr "Marco Rossini"
-
-#: ../src/plugin.c:33
-msgid "Copyright 2008 Marco Rossini"
-msgstr "Copyright 2008 Marco Rossini"
-
-#: ../src/plugin.c:35
+#: src/plugin.c:81
 msgid "_Wavelet sharpen ..."
 msgstr "Wyostrzanie wavelet..."
 
-#: ../src/sharpen.c:64
+#: src/plugin.c:85 src/plugin.c:86
+msgid "Sharpens the image using wavelets."
+msgstr "Wyostrza obraz używając metody wavelet."
+
+#. the arguments keep the names of the GIMP 2 version for scripts
+#: src/plugin.c:92
+msgid "_Amount"
+msgstr "_Siła"
+
+#: src/plugin.c:95
+msgid "Ra_dius"
+msgstr "_Promień"
+
+#: src/plugin.c:99
+msgid "Sharpen lu_minance only"
+msgstr "_Wyostrz tylko luminancję"
+
+#: src/plugin.c:130
+#, c-format
+msgid "Procedure '%s' only works with one drawable."
+msgstr ""
+
+#. Tool-tips
+#: src/plugin.h:30
+msgid "Adjusts the amount of sharpening applied."
+msgstr "Ustawia siłę wyostrzania."
+
+#: src/plugin.h:31
+msgid ""
+"Adjusts the radius of the sharpening. For very unsharp images it is "
+"recommended to use higher values. Default is 0.5."
+msgstr ""
+"Ustawia promień wyostrzania. Zaleca się ustawienie większych wartości dla "
+"bardzo nieostrych obrazów. Domyślna wartość to 0,5."
+
+#: src/plugin.h:32
+msgid ""
+"Sharpens luminance only (YCbCr luminance channel). This avoids color "
+"artifacts to appear and makes the sharpening faster. Colour sharpness in "
+"natural images is not critical for the human eye."
+msgstr ""
+"Wyostrza tylko kanał luminancji dla YCbCr. Pozwala to na uniknięcie "
+"kolorowych artefaktów i przyspiesza wyostrzanie."
+
+#: src/sharpen.c:99
+#, c-format
+msgid "Image dimensions too large: width %d x height %d"
+msgstr ""
+
+#: src/sharpen.c:115
+#, c-format
+msgid "There was not enough memory to complete the operation."
+msgstr ""
+
+#: src/sharpen.c:127
 msgid "Wavelet sharpening..."
 msgstr "Wyostrzanie wavelet..."
 
+#~ msgid "Resets to the default values."
+#~ msgstr "Przywraca wartości domyślne."
+
+#~ msgid "Marco Rossini"
+#~ msgstr "Marco Rossini"
+
+#~ msgid "Copyright 2008 Marco Rossini"
+#~ msgstr "Copyright 2008 Marco Rossini"
